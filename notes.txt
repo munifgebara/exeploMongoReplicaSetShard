@@ -1,0 +1,30 @@
+http://mongoosejs.com/docs/connections.html
+
+
+### Testando Replica Set
+db.alunos.insert({'ra':7366,'nome':'Alessandra'})
+db.alunos.insert({'ra':1355,'nome':'Bianca'})
+db.alunos.insert({'ra':8580,'nome':'Camila'})
+
+db.alunos.find()
+rs.slaveOk()
+
+
+
+### Testando shard
+
+
+db.stats()
+db.printShardingStatus()
+
+nomes=["Debora","Carla","Tatiana","Juliana","Marta","Maria","Pietra","Eduarda","Bruna","Priscila","Regina"]
+
+for (var i=0; i<1000;i++){
+    ra=Math.floor(Math.random()*10000);
+    nome=nomes[Math.floor(Math.random()*nomes.length)]+" "+nomes[Math.floor(Math.random()*nomes.length)];
+    db.alunos.insert({"ra":ra, "nome":nome});
+}
+
+
+
+db.printShardingStatus()
